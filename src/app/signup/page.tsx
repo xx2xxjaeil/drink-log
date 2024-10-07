@@ -52,13 +52,16 @@ const Signup: React.FC = () => {
   // 회원가입 폼
   const signupForm = useFormik<SignupFormValuesType>({
     initialValues: {
-      email: 'dlwodlf000@naver.com',
-      password: '12341234',
-      nickname: '박력재일'
+      email: '',
+      password: '',
+      nickname: ''
     },
     validationSchema,
     validateOnMount: true,
     onSubmit: (values) => {
+      // 회원 가입 정보가 올바르지 않음
+      const { email, password, nickname } = values;
+      if (!email || !password || !nickname) return;
       handleSignup(values);
     }
   });
@@ -176,10 +179,12 @@ const Signup: React.FC = () => {
             </Box>
           )}
 
-          <Box mt={5}>
+          <Box mt={6}>
             <LoadingButton
               fullWidth
               loading={signUpLoading}
+              color="inherit"
+              size="large"
               variant="outlined"
               type="submit"
               disabled={!signupForm.isValid || signUpLoading}

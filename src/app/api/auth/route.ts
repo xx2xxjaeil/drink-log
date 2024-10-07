@@ -1,12 +1,9 @@
+import admin from 'firebase-admin';
 import { NextRequest, NextResponse } from 'next/server';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '@/lib/firebase';
-import { doc, getDoc } from '@firebase/firestore';
-import admin from 'firebase-admin'; // 여기가 중요합니다.
 import { adminAuth, adminDb } from '@/lib/firebaseAdmin';
 
 /**
- * email 회원가입 API
+ * 회원가입 API
  */
 export async function POST(req: NextRequest) {
   const body = await req.json();
